@@ -3,39 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURUM | Asesoría & Consultoría Empresarial</title>
+    <title>AURUM | Asesoría & Consultoría Empresarial de Alto Nivel</title>
     <meta name="description" content="AURUM - Asesoría fiscal, contable, laboral, financiera y legal de alto nivel para empresas y autónomos.">
 
     <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
     <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         /* ==============================
-           VARIABLES Y CONFIGURACIÓN
+           VARIABLES Y CONFIGURACIÓN PREMIUM DARK
         ============================== */
         :root {
-            --azul-oscuro: #071522;
-            --azul-medio: #0d1d2d;
-            --azul-superficie: #14283c;
-            --dorado: #c59b27;
-            --dorado-hover: #d2a84f;
-            --dorado-claro: #f0d28a;
-            --dorado-suave: rgba(197, 155, 39, 0.12);
+            --bg-principal: #04070c;
+            --bg-superficie: #090e17;
+            --bg-card: rgba(13, 20, 32, 0.7);
+            --bg-card-hover: rgba(20, 31, 48, 0.85);
+            
+            --dorado-primary: #d4af37;
+            --dorado-light: #f5d77f;
+            --dorado-dark: #aa8214;
+            --dorado-glow: rgba(212, 175, 55, 0.4);
+            --dorado-suave: rgba(212, 175, 55, 0.08);
+            --borde-dorado: rgba(212, 175, 55, 0.22);
+            --borde-dorado-brillante: rgba(245, 215, 127, 0.6);
+
             --blanco: #ffffff;
-            --crema: #f9f8f5;
-            --gris-fondo: #f4f6f8;
-            --texto-principal: #1e293b;
-            --texto-secundario: #64748b;
-            --borde: #e2e8f0;
-            --borde-dorado: rgba(197, 155, 39, 0.3);
-            --sombra-elegante: 0 20px 40px -15px rgba(7, 21, 34, 0.07);
-            --sombra-card: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-            --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --texto-principal: #f1f5f9;
+            --texto-secundario: #94a3b8;
+            --texto-mute: #64748b;
+
+            --sombra-gold: 0 10px 30px -10px rgba(212, 175, 55, 0.25);
+            --sombra-card: 0 20px 40px rgba(0, 0, 0, 0.6);
+            --transicion: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* RESET GENERAL */
@@ -47,14 +51,48 @@
 
         html {
             scroll-behavior: smooth;
+            background-color: var(--bg-principal);
         }
 
         body {
             font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--texto-principal);
-            background-color: var(--blanco);
+            background-color: var(--bg-principal);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* CANVAS BACKGROUND ANIMATION */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* CAPA DE SUPERPOSICIÓN DE RED Y TEXTURAS */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
         }
 
         a {
@@ -67,69 +105,118 @@
         }
 
         .container {
-            width: min(1200px, 90%);
+            width: min(1240px, 92%);
             margin: auto;
         }
 
         /* ==============================
-           TOP BAR & HEADER
+           TOP BAR & TICKER FINANCIERO
         ============================== */
         .top-bar {
-            background-color: #040c14;
-            color: #94a3b8;
-            font-size: 13px;
+            background: rgba(3, 6, 10, 0.95);
+            color: var(--texto-secundario);
+            font-size: 12px;
             padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            letter-spacing: 0.3px;
         }
 
         .top-bar-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         .top-info {
             display: flex;
-            gap: 24px;
+            gap: 20px;
+            align-items: center;
         }
 
         .top-info-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .top-info-item i {
-            width: 14px;
-            height: 14px;
-            color: var(--dorado);
+            width: 13px;
+            height: 13px;
+            color: var(--dorado-primary);
         }
 
+        .ticker-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-family: monospace;
+            font-size: 11px;
+            color: var(--dorado-light);
+            background: rgba(212, 175, 55, 0.05);
+            padding: 3px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .ticker-item span {
+            color: #4ade80;
+            margin-left: 3px;
+        }
+
+        /* ==============================
+           HEADER / NAVIGATION
+        ============================== */
         header {
             position: sticky;
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(7, 21, 34, 0.92);
-            backdrop-filter: blur(16px);
+            background: rgba(4, 7, 12, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--borde-dorado);
         }
 
         .navbar {
-            height: 80px;
+            height: 84px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        /* LOGO NAVEGACIÓN */
         .nav-logo {
             display: flex;
             align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo-box {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--dorado-primary);
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dorado-light);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .nav-logo-text {
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--dorado-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-logo img {
-            height: 55px;
+            height: 48px;
             width: auto;
             object-fit: contain;
             border-radius: 4px;
@@ -138,58 +225,86 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 32px;
-            font-size: 14px;
-            font-weight: 500;
+            gap: 36px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .nav-links a {
-            color: #cbd5e1;
+            color: var(--texto-secundario);
             transition: var(--transicion);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--dorado-primary);
+            transition: var(--transicion);
+            box-shadow: 0 0 8px var(--dorado-primary);
         }
 
         .nav-links a:hover {
-            color: var(--dorado-claro);
+            color: var(--dorado-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-cta {
-            padding: 10px 20px;
-            border: 1px solid var(--dorado);
-            border-radius: 6px;
-            color: var(--dorado-claro) !important;
+            padding: 10px 24px !important;
+            border: 1px solid var(--dorado-primary);
+            border-radius: 4px;
+            color: var(--dorado-light) !important;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.02));
             transition: var(--transicion) !important;
-            background: rgba(197, 155, 39, 0.05);
+            box-shadow: var(--sombra-gold);
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+        }
+
+        .nav-cta::after {
+            display: none !important;
         }
 
         .nav-cta:hover {
-            background: var(--dorado);
-            color: var(--azul-oscuro) !important;
+            background: var(--dorado-primary) !important;
+            color: #04070c !important;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            transform: translateY(-2px);
         }
 
         .menu-toggle {
             display: none;
-            color: var(--blanco);
+            color: var(--dorado-light);
             background: none;
-            border: none;
+            border: 1px solid var(--borde-dorado);
+            padding: 8px;
+            border-radius: 6px;
             cursor: pointer;
         }
 
         /* ==============================
-           HERO SECTION
+           HERO SECTION FUTURISTA
         ============================== */
         .hero {
             position: relative;
-            padding: 100px 0 120px;
+            padding: 120px 0 140px;
             background: 
-                radial-gradient(circle at 85% 20%, rgba(197, 155, 39, 0.12), transparent 40%),
-                linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-medio) 100%);
-            color: var(--blanco);
+                radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.12), transparent 60%),
+                radial-gradient(circle at 85% 70%, rgba(13, 20, 32, 0.8), transparent 50%);
             overflow: hidden;
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
+            grid-template-columns: 1.1fr 0.9fr;
             gap: 60px;
             align-items: center;
         }
@@ -197,44 +312,49 @@
         .hero-kicker {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--dorado-claro);
-            background: rgba(197, 155, 39, 0.1);
-            border: 1px solid var(--borde-dorado);
-            padding: 6px 16px;
+            gap: 10px;
+            color: var(--dorado-light);
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid var(--borde-dorado-brillante);
+            padding: 8px 20px;
             border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
         }
 
         .hero h1 {
             font-family: "Playfair Display", serif;
-            font-size: clamp(40px, 5.5vw, 64px);
+            font-size: clamp(42px, 5vw, 68px);
             line-height: 1.1;
             margin-bottom: 24px;
-            font-weight: 700;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
         }
 
         .hero h1 span {
-            background: linear-gradient(135deg, var(--dorado-claro), var(--dorado));
+            background: linear-gradient(135deg, #ffffff 0%, var(--dorado-light) 50%, var(--dorado-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
         }
 
         .hero p {
-            color: #94a3b8;
-            font-size: 18px;
-            margin-bottom: 36px;
-            max-width: 540px;
+            color: var(--texto-secundario);
+            font-size: 17px;
+            margin-bottom: 40px;
+            max-width: 560px;
             font-weight: 300;
+            line-height: 1.8;
         }
 
         .buttons {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
@@ -242,96 +362,162 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 14px 28px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 15px;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             transition: var(--transicion);
             cursor: pointer;
             border: none;
+            position: relative;
         }
 
         .btn-gold {
-            background: linear-gradient(135deg, var(--dorado), var(--dorado-hover));
-            color: var(--azul-oscuro);
-            box-shadow: 0 4px 15px rgba(197, 155, 39, 0.3);
+            background: linear-gradient(135deg, var(--dorado-light), var(--dorado-primary));
+            color: #04070c;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
         }
 
         .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(197, 155, 39, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.7);
+            background: linear-gradient(135deg, #ffffff, var(--dorado-light));
         }
 
         .btn-outline {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--blanco);
-            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--borde-dorado);
+            color: var(--texto-principal);
+            background: rgba(13, 20, 32, 0.6);
+            backdrop-filter: blur(10px);
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
         }
 
         .btn-outline:hover {
-            background: var(--blanco);
-            color: var(--azul-oscuro);
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--dorado-light);
+            color: var(--dorado-light);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
-        /* LOGO HERO PRINCIPAL */
-        .hero-logo {
+        /* HERO BADGE / LOGO CONTAINER */
+        .hero-logo-card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--borde-dorado);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--sombra-card), 0 0 50px rgba(212, 175, 55, 0.1);
+            text-align: center;
+        }
+
+        .hero-logo-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, var(--dorado-light), transparent 50%, var(--dorado-primary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .hero-logo-box {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+            border: 1px solid var(--borde-dorado-brillante);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+            position: relative;
         }
 
-        .hero-logo img {
-            width: min(480px, 100%);
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .hero-logo-box i {
+            font-size: 64px;
+            color: var(--dorado-light);
+            filter: drop-shadow(0 0 15px var(--dorado-primary));
+        }
+
+        .hero-stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .stat-item h4 {
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+            color: var(--dorado-light);
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 11px;
+            color: var(--texto-mute);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
         }
 
         /* ==============================
-           SECCIONES COMUNES
+           SECCIONES GENERALES
         ============================== */
         section {
-            padding: 100px 0;
+            padding: 110px 0;
+            position: relative;
         }
 
         .section-head {
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
+            max-width: 760px;
+            margin: 0 auto 70px;
         }
 
         .label {
-            color: var(--dorado);
+            color: var(--dorado-light);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: block;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 14px;
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid var(--borde-dorado);
+            padding: 4px 16px;
+            border-radius: 20px;
         }
 
         .section-head h2 {
             font-family: "Playfair Display", serif;
-            font-size: clamp(32px, 4vw, 44px);
-            color: var(--azul-oscuro);
-            margin-bottom: 16px;
+            font-size: clamp(32px, 4vw, 48px);
+            color: #ffffff;
+            margin-bottom: 20px;
             line-height: 1.2;
+            font-weight: 700;
         }
 
         .section-head p {
             color: var(--texto-secundario);
             font-size: 16px;
+            font-weight: 300;
         }
 
         /* ==============================
-           NOSOTROS
+           NOSOTROS (ABOUT)
         ============================== */
-        .about {
-            background-color: var(--crema);
-        }
-
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -341,8 +527,8 @@
 
         .about-text h3 {
             font-family: "Playfair Display", serif;
-            font-size: 32px;
-            color: var(--azul-oscuro);
+            font-size: 34px;
+            color: var(--blanco);
             margin-bottom: 20px;
         }
 
@@ -350,296 +536,362 @@
             color: var(--texto-secundario);
             margin-bottom: 20px;
             font-size: 15px;
+            line-height: 1.8;
         }
 
         .about-features {
-            margin-top: 30px;
+            margin-top: 32px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 18px;
         }
 
         .feature-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 600;
-            color: var(--azul-oscuro);
+            gap: 14px;
+            font-weight: 500;
+            color: var(--texto-principal);
+            background: rgba(13, 20, 32, 0.5);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .feature-item i {
-            color: var(--dorado);
+            color: var(--dorado-light);
             width: 20px;
             height: 20px;
         }
 
         .about-card {
-            background: var(--azul-oscuro);
+            background: linear-gradient(135deg, rgba(13, 20, 32, 0.9), rgba(9, 14, 23, 0.95));
             color: var(--blanco);
-            padding: 48px;
-            border-radius: 12px;
+            padding: 50px;
+            border-radius: 16px;
             position: relative;
-            border-left: 4px solid var(--dorado);
-            box-shadow: var(--sombra-elegante);
+            border: 1px solid var(--borde-dorado);
+            box-shadow: var(--sombra-card), inset 0 0 30px rgba(212, 175, 55, 0.05);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--dorado-light), var(--dorado-dark));
+            box-shadow: 0 0 15px var(--dorado-primary);
         }
 
         .about-card h3 {
             font-family: "Playfair Display", serif;
-            font-size: 28px;
-            color: var(--blanco);
-            margin-bottom: 16px;
+            font-size: 30px;
+            color: var(--dorado-light);
+            margin-bottom: 20px;
         }
 
         .about-card p {
-            color: #94a3b8;
-            font-size: 15px;
+            color: var(--texto-secundario);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        /* ==============================
+           SERVICIOS GRID (DARK TARIFAS STYLE)
+        ============================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            padding: 42px;
+            border: 1px solid var(--borde-dorado);
+            border-radius: 16px;
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            transition: var(--transicion);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-card), 0 0 30px rgba(212, 175, 55, 0.25);
+            border-color: var(--borde-dorado-brillante);
+            background: var(--bg-card-hover);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            border: 1px solid var(--borde-dorado);
+            color: var(--dorado-light);
+            display: grid;
+            place-items: center;
+            margin-bottom: 28px;
+            transition: var(--transicion);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--dorado-primary);
+            color: #04070c;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            color: var(--blanco);
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--texto-secundario);
+            font-size: 14px;
             line-height: 1.8;
         }
 
         /* ==============================
-           SERVICIOS
+           VENTAJAS COMPETITIVAS
         ============================== */
-        .services-grid {
+        .dark-section {
+            background: rgba(6, 10, 16, 0.8);
+            border-top: 1px solid var(--borde-dorado);
+            border-bottom: 1px solid var(--borde-dorado);
+        }
+
+        .advantages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
         }
 
-        .service-card {
-            padding: 40px;
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            background: var(--blanco);
+        .adv-card {
+            background: var(--bg-card);
+            padding: 36px 28px;
+            border-radius: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
             transition: var(--transicion);
             position: relative;
-            top: 0;
         }
 
-        .service-card:hover {
-            top: -8px;
-            box-shadow: var(--sombra-elegante);
-            border-color: var(--dorado);
+        .adv-card:hover {
+            border-color: var(--dorado-light);
+            transform: translateY(-6px);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
         }
 
-        .service-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 10px;
-            background: var(--dorado-suave);
-            color: var(--dorado);
-            display: grid;
-            place-items: center;
-            margin-bottom: 24px;
-            transition: var(--transicion);
+        .adv-number {
+            font-family: "Playfair Display", serif;
+            font-size: 44px;
+            color: var(--dorado-light);
+            font-weight: 800;
+            margin-bottom: 14px;
+            line-height: 1;
+            opacity: 0.9;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
 
-        .service-card:hover .service-icon {
-            background: var(--dorado);
+        .adv-card h3 {
+            font-size: 19px;
+            margin-bottom: 12px;
             color: var(--blanco);
         }
 
-        .service-card h3 {
-            font-size: 20px;
-            color: var(--azul-oscuro);
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .service-card p {
+        .adv-card p {
             color: var(--texto-secundario);
             font-size: 14px;
             line-height: 1.7;
         }
 
         /* ==============================
-           POR QUÉ ELEGIRNOS (DARK)
+           CLIENTES / SECTORES
         ============================== */
-        .dark-section {
-            background: var(--azul-oscuro);
-            color: var(--blanco);
-        }
-
-        .dark-section .section-head h2 {
-            color: var(--blanco);
-        }
-
-        .dark-section .section-head p {
-            color: #94a3b8;
-        }
-
-        .advantages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 30px;
-        }
-
-        .adv-card {
-            background: var(--azul-medio);
-            padding: 32px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transicion);
-        }
-
-        .adv-card:hover {
-            border-color: var(--borde-dorado);
-            transform: translateY(-4px);
-        }
-
-        .adv-number {
-            font-family: "Playfair Display", serif;
-            font-size: 36px;
-            color: var(--dorado);
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .adv-card h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: var(--blanco);
-        }
-
-        .adv-card p {
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
-        /* ==============================
-           CLIENTES
-        ============================== */
-        .clients-section {
-            background: var(--gris-fondo);
-        }
-
         .client-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
         }
 
         .client-card {
-            background: var(--blanco);
-            padding: 40px 30px;
-            border-radius: 12px;
-            border: 1px solid var(--borde);
+            background: var(--bg-card);
+            padding: 44px 32px;
+            border-radius: 16px;
+            border: 1px solid var(--borde-dorado);
             text-align: center;
-            box-shadow: var(--sombra-card);
+            backdrop-filter: blur(15px);
+            transition: var(--transicion);
+        }
+
+        .client-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--dorado-light);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
         }
 
         .client-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--crema);
+            width: 72px;
+            height: 72px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent 70%);
+            border: 1px solid var(--borde-dorado-brillante);
             border-radius: 50%;
             display: grid;
             place-items: center;
-            margin: 0 auto 20px;
-            color: var(--dorado);
+            margin: 0 auto 24px;
+            color: var(--dorado-light);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
         .client-card h3 {
-            color: var(--azul-oscuro);
-            margin-bottom: 10px;
-            font-size: 20px;
+            color: var(--blanco);
+            margin-bottom: 12px;
+            font-size: 22px;
+            font-family: "Playfair Display", serif;
         }
 
         .client-card p {
             color: var(--texto-secundario);
             font-size: 14px;
+            line-height: 1.8;
         }
 
         /* ==============================
-           PROCESO
+           PROCESO METODOLOGÍA (COINLOMBARD STEP CARDS)
         ============================== */
         .process-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
         }
 
         .step-card {
-            padding: 32px 24px;
-            border: 1px solid var(--borde);
-            border-radius: 10px;
-            background: var(--blanco);
+            padding: 40px 30px;
+            border: 1px solid var(--borde-dorado);
+            border-radius: 14px;
+            background: var(--bg-card);
             position: relative;
+            backdrop-filter: blur(15px);
+            transition: var(--transicion);
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--dorado-primary), transparent);
+            opacity: 0.4;
+        }
+
+        .step-card:hover {
+            border-color: var(--dorado-light);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            transform: translateY(-6px);
         }
 
         .step-tag {
-            color: var(--dorado);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-family: "Playfair Display", serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--dorado-light);
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            line-height: 1;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
 
         .step-card h3 {
-            color: var(--azul-oscuro);
-            font-size: 18px;
-            margin-bottom: 8px;
+            color: var(--blanco);
+            font-size: 20px;
+            margin-bottom: 12px;
         }
 
         .step-card p {
             color: var(--texto-secundario);
-            font-size: 13px;
+            font-size: 14px;
+            line-height: 1.7;
         }
 
         /* ==============================
-           CONTACTO
+           CONTACTO (DARK GLASS FORM)
         ============================== */
         .contact-section {
-            background: var(--crema);
+            background: rgba(5, 8, 14, 0.9);
+            border-top: 1px solid var(--borde-dorado);
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 0.9fr 1.1fr;
             gap: 60px;
+            align-items: center;
         }
 
         .contact-info h2 {
             font-family: "Playfair Display", serif;
-            font-size: 36px;
-            color: var(--azul-oscuro);
-            margin-bottom: 16px;
+            font-size: 40px;
+            color: var(--blanco);
+            margin-bottom: 18px;
         }
 
         .contact-info > p {
             color: var(--texto-secundario);
-            margin-bottom: 32px;
+            margin-bottom: 36px;
+            font-size: 16px;
         }
 
         .contact-details {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
         }
 
         .contact-item {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             align-items: flex-start;
         }
 
         .contact-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--blanco);
-            border: 1px solid var(--borde);
-            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            background: var(--bg-card);
+            border: 1px solid var(--borde-dorado);
+            border-radius: 10px;
             display: grid;
             place-items: center;
-            color: var(--dorado);
+            color: var(--dorado-light);
             flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
         }
 
         .contact-item strong {
             display: block;
-            color: var(--azul-oscuro);
-            font-size: 15px;
-            margin-bottom: 2px;
+            color: var(--blanco);
+            font-size: 16px;
+            margin-bottom: 4px;
         }
 
         .contact-item span {
@@ -649,46 +901,49 @@
 
         /* FORMULARIO */
         .contact-form {
-            background: var(--blanco);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--borde);
-            box-shadow: var(--sombra-elegante);
+            background: var(--bg-card);
+            padding: 50px;
+            border-radius: 18px;
+            border: 1px solid var(--borde-dorado);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--sombra-card), 0 0 40px rgba(212, 175, 55, 0.1);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .form-group label {
             display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--azul-oscuro);
-            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dorado-light);
+            margin-bottom: 10px;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--borde);
+            padding: 14px 18px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 6px;
             font-family: inherit;
             font-size: 14px;
-            color: var(--texto-principal);
-            background: #fafafa;
+            color: var(--blanco);
+            background: rgba(4, 7, 12, 0.7);
             transition: var(--transicion);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--dorado);
-            background: var(--blanco);
-            box-shadow: 0 0 0 3px rgba(197, 155, 39, 0.15);
+            border-color: var(--dorado-light);
+            background: rgba(13, 20, 32, 0.9);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
         }
 
         textarea.form-control {
-            min-height: 120px;
+            min-height: 130px;
             resize: vertical;
         }
 
@@ -696,55 +951,61 @@
            FOOTER
         ============================== */
         footer {
-            background: #030a12;
-            color: #94a3b8;
-            padding: 80px 0 30px;
+            background: #020407;
+            color: var(--texto-secundario);
+            padding: 90px 0 35px;
             font-size: 14px;
+            border-top: 1px solid var(--borde-dorado);
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
             gap: 60px;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .footer-brand .nav-logo {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .footer-brand p {
-            max-width: 320px;
-            line-height: 1.7;
+            max-width: 340px;
+            line-height: 1.8;
+            color: var(--texto-secundario);
         }
 
         .footer-col h4 {
             color: var(--blanco);
             font-size: 16px;
-            margin-bottom: 24px;
-            font-weight: 600;
+            margin-bottom: 26px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .footer-links {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .footer-links a {
             transition: var(--transicion);
+            color: var(--texto-secundario);
         }
 
         .footer-links a:hover {
-            color: var(--dorado-claro);
+            color: var(--dorado-light);
+            padding-left: 5px;
         }
 
         .footer-bottom {
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 35px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
             text-align: center;
             font-size: 13px;
-            color: #64748b;
+            color: var(--texto-mute);
         }
 
         /* ==============================
@@ -753,10 +1014,10 @@
         @media (max-width: 992px) {
             .hero-grid, .about-grid, .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 50px;
             }
 
-            .hero-logo {
+            .hero-logo-card {
                 order: -1;
             }
 
@@ -777,10 +1038,10 @@
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 80px;
+                top: 84px;
                 left: 0;
                 width: 100%;
-                background: var(--azul-oscuro);
+                background: rgba(4, 7, 12, 0.98);
                 padding: 30px;
                 flex-direction: column;
                 align-items: flex-start;
@@ -796,414 +1057,535 @@
             }
 
             .hero {
-                padding: 60px 0 80px;
+                padding: 80px 0 90px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <div class="container top-bar-content">
-            <div class="top-info">
-                <div class="top-info-item">
-                    <i data-lucide="map-pin"></i>
-                    <span>Paseo de Pereda, 15, Santander</span>
+    <!-- CANVAS ANIMADO DE RED DE PARTÍCULAS DORADAS (ESTILO HIGH-TECH) -->
+    <canvas id="bg-canvas"></canvas>
+    
+    <!-- GRID OVERLAY LAYER -->
+    <div class="grid-overlay"></div>
+
+    <div class="content-wrapper">
+        <!-- TOP BAR METRICS -->
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="top-info">
+                    <div class="top-info-item">
+                        <i data-lucide="map-pin"></i>
+                        <span>Paseo de Pereda, 15, Santander</span>
+                    </div>
+                    <div class="top-info-item">
+                        <i data-lucide="phone"></i>
+                        <span>+34 942 55 66 77</span>
+                    </div>
+                    <div class="top-info-item">
+                        <i data-lucide="mail"></i>
+                        <span>contacto@aurumasesoria.es</span>
+                    </div>
                 </div>
-                <div class="top-info-item">
-                    <i data-lucide="phone"></i>
-                    <span>+34 942 55 66 77</span>
+
+                <div class="ticker-badge">
+                    <span class="ticker-item">EURIBOR: 3.65%<span>+0.02%</span></span>
+                    <span class="ticker-item">IBEX 35: 11,240<span>+0.45%</span></span>
+                    <span class="ticker-item">Horario: L-V 9:00 - 18:00</span>
                 </div>
-                <div class="top-info-item">
-                    <i data-lucide="mail"></i>
-                    <span>contacto@aurumasesoria.es</span>
-                </div>
-            </div>
-            <div>
-                <span>Horario: L-V 9:00 - 18:00</span>
             </div>
         </div>
+
+        <!-- HEADER NAV -->
+        <header>
+            <div class="container navbar">
+                <a href="#inicio" class="nav-logo">
+                    <div class="nav-logo-box">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <span class="nav-logo-text">AURUM</span>
+                </a>
+
+                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menú">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <nav class="nav-links" id="navLinks">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#nosotros">Nosotros</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#clientes">Clientes</a>
+                    <a href="#contacto" class="nav-cta">Solicitar Consulta</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="inicio">
+            <div class="container hero-grid">
+                <div>
+                    <span class="hero-kicker">
+                        <i data-lucide="award"></i> Asesoría Empresarial de Excelencia
+                    </span>
+                    <h1>Tu tranquilidad <span>financiera y legal</span> empieza aquí.</h1>
+                    <p>Ofrecemos soluciones integrales de alto valor en gestión fiscal, contable, laboral y estratégica para hacer crecer tu empresa con total seguridad en el entorno corporativo.</p>
+                    <div class="buttons">
+                        <a class="btn btn-gold" href="#contacto">
+                            Agendar Asesoramiento <i data-lucide="arrow-right"></i>
+                        </a>
+                        <a class="btn btn-outline" href="#servicios">
+                            Explorar Servicios
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-logo-card">
+                    <div class="hero-logo-box">
+                        <i data-lucide="crown"></i>
+                    </div>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 26px; color: #fff; margin-bottom: 8px;">AURUM CONSULTING</h3>
+                    <p style="color: var(--dorado-light); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Gestión Patrimonial & Empresarial</p>
+                    
+                    <div class="hero-stats-row">
+                        <div class="stat-item">
+                            <h4>+15</h4>
+                            <p>Años Exp.</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>100%</h4>
+                            <p>Rigor Legal</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>24h</h4>
+                            <p>Respuesta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOSOTROS -->
+        <section class="about" id="nosotros">
+            <div class="container">
+                <div class="section-head">
+                    <span class="label">Sobre AURUM</span>
+                    <h2>Socio estratégico para el éxito de tu negocio</h2>
+                    <p>Proporcionamos claridad en entornos regulatorios complejos para que te enfoques en lo más importante: hacer crecer tu empresa.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h3>Más que una gestoría tradicional</h3>
+                        <p>En AURUM combinamos la cercanía del asesoramiento confidencial con metodologías ágiles de gestión administrativa y contable.</p>
+                        <p>Nos adaptamos al perfil de cada cliente para anticipar riesgos, optimizar la carga fiscal y garantizar el cumplimiento normativo en todo momento.</p>
+                        
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <i data-lucide="check-circle-2"></i>
+                                <span>Asesoramiento proactivo y adaptado</span>
+                            </div>
+                            <div class="feature-item">
+                                <i data-lucide="check-circle-2"></i>
+                                <span>Respuesta ágil en menos de 24 horas</span>
+                            </div>
+                            <div class="feature-item">
+                                <i data-lucide="check-circle-2"></i>
+                                <span>Transparencia absoluta en honorarios</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-card">
+                        <h3>Nuestro Compromiso</h3>
+                        <p>Brindar certidumbre técnica e institucional en cada decisión financiera y jurídica. Nuestra meta es proteger los activos de nuestros clientes y potenciar la eficiencia de sus operaciones mediante estrategias contables y legales de máximo rigor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICIOS -->
+        <section id="servicios">
+            <div class="container">
+                <div class="section-head">
+                    <span class="label">Áreas de Práctica</span>
+                    <h2>Soluciones Especializadas</h2>
+                    <p>Cubrimos todas las necesidades de la gestión corporativa y patrimonial.</p>
+                </div>
+
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i data-lucide="calculator"></i>
+                        </div>
+                        <h3>Asesoría Fiscal</h3>
+                        <p>Planificación fiscal estratégica, preparación e inspección de impuestos (IVA, Sociedades, IRPF) y optimización tributaria nacional e internacional.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i data-lucide="book-open-check"></i>
+                        </div>
+                        <h3>Asesoría Contable</h3>
+                        <p>Llevanza de libros oficiales, elaboración de Cuentas Anuales, auditorías internas y análisis contable financiero detallado.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <h3>Asesoría Laboral</h3>
+                        <p>Gestión integral de nóminas, contratos, altas y bajas en la Seguridad Social, inspecciones de trabajo y convenios colectivos.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i data-lucide="trending-up"></i>
+                        </div>
+                        <h3>Consultoría Financiera</h3>
+                        <p>Análisis de viabilidad, gestión de tesorería, reestructuración de deuda y apoyo en la búsqueda de financiación estratégica.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i data-lucide="scale"></i>
+                        </div>
+                        <h3>Asesoría Legal</h3>
+                        <p>Derecho mercantil y societario, redacción y revisión de contratos comerciales, operaciones corporativas y resolución de disputas.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i data-lucide="file-check"></i>
+                        </div>
+                        <h3>Gestión Administrativa</h3>
+                        <p>Tramitación de licencias, certificados corporativos, gestiones ante organismos públicos y normativas de protección de datos.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- VENTAJAS / DARK SECTION -->
+        <section class="dark-section">
+            <div class="container">
+                <div class="section-head">
+                    <span class="label">Ventajas Competitivas</span>
+                    <h2>¿Por qué confiar en AURUM?</h2>
+                    <p>Principios fundamentales que definen nuestra relación con el cliente.</p>
+                </div>
+
+                <div class="advantages-grid">
+                    <div class="adv-card">
+                        <div class="adv-number">01</div>
+                        <h3>Atención Exclusiva</h3>
+                        <p>Asignación de un asesor dedicado que conoce en profundidad tu sector y tu negocio.</p>
+                    </div>
+
+                    <div class="adv-card">
+                        <div class="adv-number">02</div>
+                        <h3>Cobertura 360°</h3>
+                        <p>Integración total de servicios legales, fiscales y contables bajo un mismo techo.</p>
+                    </div>
+
+                    <div class="adv-card">
+                        <div class="adv-number">03</div>
+                        <h3>Rigurosidad Técnica</h3>
+                        <p>Actualización permanente ante los continuos cambios legislativos y fiscales.</p>
+                    </div>
+
+                    <div class="adv-card">
+                        <div class="adv-number">04</div>
+                        <h3>Orientación a Resultados</h3>
+                        <p>Soluciones enfocadas en generar ahorro de costes, eficiencia operativa y seguridad legal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIENTES -->
+        <section class="clients-section" id="clientes">
+            <div class="container">
+                <div class="section-head">
+                    <span class="label">Sectores</span>
+                    <h2>Soluciones a tu Medida</h2>
+                    <p>Especializados en los requerimientos específicos de cada perfil profesional.</p>
+                </div>
+
+                <div class="client-grid">
+                    <div class="client-card">
+                        <div class="client-icon">
+                            <i data-lucide="building-2"></i>
+                        </div>
+                        <h3>Pymes y Sociedades</h3>
+                        <p>Soporte integral para pequeñas y medianas empresas que buscan consolidarse y escalar con control de riesgos.</p>
+                    </div>
+
+                    <div class="client-card">
+                        <div class="client-icon">
+                            <i data-lucide="briefcase"></i>
+                        </div>
+                        <h3>Autónomos y Profesionales</h3>
+                        <p>Simplificación de las obligaciones tributarias y contables diarias para maximizar el tiempo dedicado al negocio.</p>
+                    </div>
+
+                    <div class="client-card">
+                        <div class="client-icon">
+                            <i data-lucide="user-check"></i>
+                        </div>
+                        <h3>Particulares y Patrimonios</h3>
+                        <p>Asesoramiento personalizado en planificación sucesoria, renta, patrimonio y gestiones administrativas complejas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESO -->
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <span class="label">Metodología</span>
+                    <h2>Proceso de Trabajo</h2>
+                    <p>Un método estructurado para garantizar el control de cada etapa.</p>
+                </div>
+
+                <div class="process-grid">
+                    <div class="step-card">
+                        <span class="step-tag">01</span>
+                        <h3>Diagnóstico</h3>
+                        <p>Evaluamos el estado fiscal, laboral y contable inicial de tu actividad para identificar riesgos y áreas de mejora.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <span class="step-tag">02</span>
+                        <h3>Estrategia</h3>
+                        <p>Diseñamos un plan de acción a medida que optimiza la carga fiscal y simplifica los trámites administrativos.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <span class="step-tag">03</span>
+                        <h3>Ejecución</h3>
+                        <p>Implementamos las soluciones acordadas gestionando la presentación de impuestos, libros y contrataciones.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <span class="step-tag">04</span>
+                        <h3>Seguimiento</h3>
+                        <p>Monitorizamos periódicamente tu negocio con informes claros y asesoramiento proactivo continuo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section class="contact-section" id="contacto">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <span class="label">Contacto Directo</span>
+                        <h2>Hablemos de tu Proyecto</h2>
+                        <p>Solicita una primera consulta confidencial con nuestros especialistas sin ningún compromiso.</p>
+
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <div>
+                                    <strong>Dirección Principal</strong>
+                                    <span>Paseo de Pereda, 15, 39004 Santander, Cantabria</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i data-lucide="phone"></i>
+                                </div>
+                                <div>
+                                    <strong>Teléfono Directo</strong>
+                                    <span>+34 942 55 66 77</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i data-lucide="mail"></i>
+                                </div>
+                                <div>
+                                    <strong>Correo Electrónico</strong>
+                                    <span>contacto@aurumasesoria.es</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <form onsubmit="event.preventDefault(); alert('Gracias por contactar con AURUM. Le responderemos en menos de 24 horas.');">
+                            <div class="form-group">
+                                <label for="nombre">Nombre Completo</label>
+                                <input type="text" id="nombre" class="form-control" placeholder="Ej. Carlos Mendoza" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" class="form-control" placeholder="carlos@empresa.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono de Contacto</label>
+                                <input type="tel" id="telefono" class="form-control" placeholder="+34 600 000 000">
+                            </div>
+                            <div class="form-group">
+                                <label for="mensaje">Mensaje o Consulta</label>
+                                <textarea id="mensaje" class="form-control" placeholder="Describa brevemente en qué podemos ayudarle..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gold" style="width: 100%;">Enviar Consulta</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="#inicio" class="nav-logo" style="margin-bottom: 20px;">
+                            <div class="nav-logo-box">
+                                <i data-lucide="shield-check"></i>
+                            </div>
+                            <span class="nav-logo-text">AURUM</span>
+                        </a>
+                        <p>Asesoría fiscal, contable, laboral y legal de alto nivel. Respaldando el crecimiento sostenible de empresas y profesionales con máximo rigor técnico.</p>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Navegación</h4>
+                        <div class="footer-links">
+                            <a href="#inicio">Inicio</a>
+                            <a href="#nosotros">Nosotros</a>
+                            <a href="#servicios">Servicios</a>
+                            <a href="#clientes">Clientes</a>
+                            <a href="#contacto">Contacto</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Servicios</h4>
+                        <div class="footer-links">
+                            <a href="#servicios">Asesoría Fiscal</a>
+                            <a href="#servicios">Asesoría Contable</a>
+                            <a href="#servicios">Asesoría Laboral</a>
+                            <a href="#servicios">Consultoría Financiera</a>
+                            <a href="#servicios">Asesoría Legal</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 AURUM Asesoría & Consultoría Empresarial S.L. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- HEADER NAV CON LOGO.PNG -->
-    <header>
-        <div class="container navbar">
-            <a href="#inicio" class="nav-logo">
-                <img src="logo.png" alt="AURUM Asesoría Empresarial">
-            </a>
-
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menú">
-                <i data-lucide="menu"></i>
-            </button>
-
-            <nav class="nav-links" id="navLinks">
-                <a href="#inicio">Inicio</a>
-                <a href="#nosotros">Nosotros</a>
-                <a href="#servicios">Servicios</a>
-                <a href="#clientes">Clientes</a>
-                <a href="#contacto" class="nav-cta">Solicitar Consulta</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- HERO SECTION CON LOGO.PNG DESTACADO -->
-    <section class="hero" id="inicio">
-        <div class="container hero-grid">
-            <div>
-                <span class="hero-kicker">
-                    <i data-lucide="award"></i> Asesoría Empresarial de Excelencia
-                </span>
-                <h1>Tu tranquilidad <span>financiera y legal</span> empieza aquí.</h1>
-                <p>Ofrecemos soluciones integrales de alto valor en gestión fiscal, contable, laboral y estratégica para hacer crecer tu empresa con total seguridad.</p>
-                <div class="buttons">
-                    <a class="btn btn-gold" href="#contacto">
-                        Agendar Asesoramiento <i data-lucide="arrow-right"></i>
-                    </a>
-                    <a class="btn btn-outline" href="#servicios">
-                        Explorar Servicios
-                    </a>
-                </div>
-            </div>
-
-            <div class="hero-logo">
-                <img src="logo.png" alt="AURUM Asesoría Empresarial">
-            </div>
-        </div>
-    </section>
-
-    <!-- NOSOTROS -->
-    <section class="about" id="nosotros">
-        <div class="container">
-            <div class="section-head">
-                <span class="label">Sobre AURUM</span>
-                <h2>Socio estratégico para el éxito de tu negocio</h2>
-                <p>Proporcionamos claridad en entornos regulatorios complejos para que te enfocues en lo más importante: hacer crecer tu empresa.</p>
-            </div>
-
-            <div class="about-grid">
-                <div class="about-text">
-                    <h3>Más que una gestoría tradicional</h3>
-                    <p>En AURUM combinamos la cercanía del asesoramiento confidencial con metodologías ágiles de gestión administrativa y contable.</p>
-                    <p>Nos adaptamos al perfil de cada cliente para anticipar riesgos, optimizar la carga fiscal y garantizar el cumplimiento normativo en todo momento.</p>
-                    
-                    <div class="about-features">
-                        <div class="feature-item">
-                            <i data-lucide="check-circle-2"></i> Asesoramiento proactivo y adaptado
-                        </div>
-                        <div class="feature-item">
-                            <i data-lucide="check-circle-2"></i> Respuesta ágil en menos de 24 horas
-                        </div>
-                        <div class="feature-item">
-                            <i data-lucide="check-circle-2"></i> Transparencia absoluta en honorarios
-                        </div>
-                    </div>
-                </div>
-
-                <div class="about-card">
-                    <h3>Nuestro Compromiso</h3>
-                    <p>Brindar certidumbre técnica e institucional en cada decisión financiera y jurídica. Nuestra meta es proteger los activos de nuestros clientes y potenciar la eficiencia de sus operaciones.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICIOS -->
-    <section id="servicios">
-        <div class="container">
-            <div class="section-head">
-                <span class="label">Áreas de Práctica</span>
-                <h2>Soluciones Especializadas</h2>
-                <p>Cubrimos todas las necesidades de la gestión corporativa y patrimonial.</p>
-            </div>
-
-            <div class="services-grid">
-                <article class="service-card">
-                    <div class="service-icon">
-                        <i data-lucide="calculator"></i>
-                    </div>
-                    <h3>Asesoría Fiscal</h3>
-                    <p>Planificación fiscal estratégica, preparación e inspección de impuestos (IVA, Sociedades, IRPF) y optimización tributaria.</p>
-                </article>
-
-                <article class="service-card">
-                    <div class="service-icon">
-                        <i data-lucide="book-open-check"></i>
-                    </div>
-                    <h3>Asesoría Contable</h3>
-                    <p>Llevanza de libros oficiales, elaboración de Cuentas Anuales, auditorías internas y análisis contable financiero.</p>
-                </article>
-
-                <article class="service-card">
-                    <div class="service-icon">
-                        <i data-lucide="users"></i>
-                    </div>
-                    <h3>Asesoría Laboral</h3>
-                    <p>Gestión integral de nóminas, contratos, altas y bajas en la Seguridad Social, inspecciones de trabajo y convenios.</p>
-                </article>
-
-                <article class="service-card">
-                    <div class="service-icon">
-                        <i data-lucide="trending-up"></i>
-                    </div>
-                    <h3>Consultoría Financiera</h3>
-                    <p>Análisis de viabilidad, gestión de tesorería, reestructuración de deuda y apoyo en la búsqueda de financiación.</p>
-                </article>
-
-                <article class="service-card">
-                    <div class="service-icon">
-                        <i data-lucide="scale"></i>
-                    </div>
-                    <h3>Asesoría Legal</h3>
-                    <p>Derecho mercantil y societario, redacción y revisión de contratos comerciales y resolución de disputas.</p>
-                </article>
-
-                <article class="service-card">
-                    <div class="service-icon">
-                        <i data-lucide="file-check"></i>
-                    </div>
-                    <h3>Gestión Administrativa</h3>
-                    <p>Tramitación de licencias, certificados corporativos, gestiones ante organismos públicos y protección de datos.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- VENTAJAS / DARK SECTION -->
-    <section class="dark-section">
-        <div class="container">
-            <div class="section-head">
-                <span class="label">Ventajas Competitivas</span>
-                <h2>¿Por qué confiar en AURUM?</h2>
-                <p>Principios fundamentales que definen nuestra relación con el cliente.</p>
-            </div>
-
-            <div class="advantages-grid">
-                <div class="adv-card">
-                    <div class="adv-number">01</div>
-                    <h3>Atención Exclusiva</h3>
-                    <p>Asignación de un asesor dedicado que conoce en profundidad tu sector y tu negocio.</p>
-                </div>
-
-                <div class="adv-card">
-                    <div class="adv-number">02</div>
-                    <h3>Cobertura 360°</h3>
-                    <p>Integración total de servicios legales, fiscales y contables bajo un mismo techo.</p>
-                </div>
-
-                <div class="adv-card">
-                    <div class="adv-number">03</div>
-                    <h3>Rigurosidad Técnica</h3>
-                    <p>Actualización permanente ante los continuos cambios legislativos y fiscales.</p>
-                </div>
-
-                <div class="adv-card">
-                    <div class="adv-number">04</div>
-                    <h3>Orientación a Resultados</h3>
-                    <p>Soluciones enfocadas en generar ahorro de costes, eficiencia operativa y seguridad legal.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CLIENTES -->
-    <section class="clients-section" id="clientes">
-        <div class="container">
-            <div class="section-head">
-                <span class="label">Sectores</span>
-                <h2>Soluciones a tu Medida</h2>
-                <p>Especializados en los requerimientos específicos de cada perfil profesional.</p>
-            </div>
-
-            <div class="client-grid">
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i data-lucide="building-2"></i>
-                    </div>
-                    <h3>Pymes y Sociedades</h3>
-                    <p>Soporte integral para pequeñas y medianas empresas que buscan consolidarse y escalar con control de riesgos.</p>
-                </div>
-
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i data-lucide="briefcase"></i>
-                    </div>
-                    <h3>Autónomos y Profesionales</h3>
-                    <p>Simplificación de las obligaciones tributarias y contables diarias para maximizar el tiempo dedicado al negocio.</p>
-                </div>
-
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i data-lucide="user-check"></i>
-                    </div>
-                    <h3>Particulares y Patrimonios</h3>
-                    <p>Asesoramiento personalizado en planificación sucesoria, renta, patrimonio y gestiones administrativas complejas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESO -->
-    <section>
-        <div class="container">
-            <div class="section-head">
-                <span class="label">Metodología</span>
-                <h2>Proceso de Trabajo</h2>
-                <p>Un método estructurado para garantizar el control de cada etapa.</p>
-            </div>
-
-            <div class="process-grid">
-                <div class="step-card">
-                    <span class="step-tag">PASO 01</span>
-                    <h3>Diagnóstico</h3>
-                    <p>Evaluamos el estado fiscal, laboral y contable inicial de tu actividad.</p>
-                </div>
-
-                <div class="step-card">
-                    <span class="step-tag">PASO 02</span>
-                    <h3>Estrategia</h3>
-                    <p>Diseñamos una propuesta de optimización adaptada a tus metas.</p>
-                </div>
-
-                <div class="step-card">
-                    <span class="step-tag">PASO 03</span>
-                    <h3>Ejecución</h3>
-                    <p>Implementación de mejoras y regularización de trámites de forma ágil.</p>
-                </div>
-
-                <div class="step-card">
-                    <span class="step-tag">PASO 04</span>
-                    <h3>Supervisión</h3>
-                    <p>Seguimiento continuo y reporte periódico del cumplimiento normativo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="contact-section" id="contacto">
-        <div class="container contact-grid">
-            <div class="contact-info">
-                <span class="label">Contacto</span>
-                <h2>Iniciemos una conversación</h2>
-                <p>Solicita una primera reunión de evaluación sin compromiso para analizar tu caso.</p>
-
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i data-lucide="building"></i>
-                        </div>
-                        <div>
-                            <strong>AURUM Consultores S.L.</strong>
-                            <span>Paseo de Pereda, 15, Bajo, 39004 Santander</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i data-lucide="phone-call"></i>
-                        </div>
-                        <div>
-                            <strong>Teléfono y Atención</strong>
-                            <span>+34 942 55 66 77</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i data-lucide="mail"></i>
-                        </div>
-                        <div>
-                            <strong>Correo Electrónico</strong>
-                            <span>info@aurumasesoria.es</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <form class="contact-form" onsubmit="sendForm(event)">
-                <div class="form-group">
-                    <label for="nombre">Nombre Completo *</label>
-                    <input type="text" id="nombre" class="form-control" placeholder="Ej. Carlos Mendoza" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email de Contacto *</label>
-                    <input type="email" id="email" class="form-control" placeholder="ejemplo@empresa.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="tipo">Tipo de Cliente *</label>
-                    <select id="tipo" class="form-control" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="empresa">Empresa / PYME</option>
-                        <option value="autonomo">Autónomo / Profesional</option>
-                        <option value="particular">Particular</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="mensaje">¿Cómo podemos ayudarte?</label>
-                    <textarea id="mensaje" class="form-control" placeholder="Describe brevemente tus necesidades..."></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-gold" style="width: 100%;">
-                    Enviar Solicitud <i data-lucide="send"></i>
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- FOOTER CON LOGO.PNG -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#inicio" class="nav-logo">
-                        <img src="logo.png" alt="AURUM Asesoría Empresarial">
-                    </a>
-                    <p style="margin-top: 15px;">Despacho profesional especializado en asesoramiento legal, fiscal, contable y financiero para empresas y profesionales.</p>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Enlaces Rápidos</h4>
-                    <div class="footer-links">
-                        <a href="#inicio">Inicio</a>
-                        <a href="#nosotros">Sobre AURUM</a>
-                        <a href="#servicios">Servicios</a>
-                        <a href="#clientes">Sectores</a>
-                    </div>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Aviso Legal</h4>
-                    <div class="footer-links">
-                        <a href="#">Política de Privacidad</a>
-                        <a href="#">Aviso Legal</a>
-                        <a href="#">Política de Cookies</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 AURUM Consultores Legales y Financieros S.L. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- SCRIPT DE ICONOS Y MENÚ MOBILE -->
+    <!-- JAVASCRIPT ANIMACIONES Y PARTÍCULAS -->
     <script>
+        // Inicialización de iconos Lucide
         lucide.createIcons();
 
+        // Toggle del menú móvil
         function toggleMenu() {
-            const navLinks = document.getElementById("navLinks");
-            navLinks.classList.toggle("active");
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
 
-        function sendForm(event) {
-            event.preventDefault();
-            alert("Gracias por contactar con AURUM. Un asesor especializado se pondrá en contacto a la brevedad.");
+        // ====================================================
+        // BACKGROUND PARTICLES & CONSTELLATION CANVAS SCRIPT
+        // ====================================================
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const particleCount = 45;
+        const maxDistance = 140;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.radius = Math.random() * 1.8 + 0.8;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(212, 175, 55, 0.7)';
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = 'rgba(212, 175, 55, 0.8)';
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < maxDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        const opacity = 1 - (dist / maxDistance);
+                        ctx.strokeStyle = `rgba(212, 175, 55, ${opacity * 0.18})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.onload = function() {
+            initParticles();
+            animateParticles();
+        };
     </script>
 </body>
 </html>
